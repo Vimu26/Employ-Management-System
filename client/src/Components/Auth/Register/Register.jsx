@@ -7,6 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 const Item = ({ children }) => {
   return (
@@ -29,9 +30,29 @@ const Register = () => {
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    console.log(name + ", " + email + ", " + password);
+    try {
+      const saveUserResponse = await axios.post(
+        "http://localhost:3172/auth/register",
+        {
+          name ,
+          email,
+          password
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      const savedUser = saveUserResponse.data;
+      console.log(savedUser);
+      onLogin();
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
   };
 
   const onLogin = () => {

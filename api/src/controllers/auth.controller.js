@@ -29,6 +29,7 @@ const signup = async (req, res) => {
 };
 
 const login = async (req, res) => {
+  console.log(req.body)
   try {
     const token = await userService.login(req.body, res);
     return res.status(200).json({
