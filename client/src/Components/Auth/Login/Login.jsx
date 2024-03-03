@@ -48,6 +48,7 @@ const Login = () => {
 
       const savedUser = user.data;
       console.log(savedUser);
+      navigate('/dashboard');
     } catch (error) {
       console.error("Registration failed:", error);
     }

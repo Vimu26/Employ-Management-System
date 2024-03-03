@@ -42,7 +42,12 @@ const login = async (userDetails , res) => {
   return accessToken;
 };
 
+const getAllUsers = async() =>{
+   return  await userDetailsModel.findAll();
+}
+
 module.exports = {
   signup,
-  login
+  login,
+  getAllUsers
 };
