@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Stack from "@mui/material/Stack";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
@@ -46,19 +46,24 @@ const Dashboard = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Container sx={{ maxWidth: 1000 }}>
-        
+    <Container
+      sx={{
+        maxWidth: 1000,
+        alignItems: "center",
+        textAlign: "center",
+        mt: 5
+      }}
+    >
+      <Button variant="contained" startIcon={<AddIcon />}>
+        Add
+      </Button>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh"
+          justifyContent: "center"
         }}
       >
-
-
-<Button variant="contained"  startIcon={<AddIcon />} >Add</Button>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
