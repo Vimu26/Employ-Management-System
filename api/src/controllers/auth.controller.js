@@ -31,13 +31,20 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
   try {
     const token = await userService.login(req.body, res);
-    return res.status(200).json({
-      status: true,
-      message: "User Login Successful",
-      data: {
-        token: token
-      }
-    });
+    if (token === false) {
+      return res.status(401).json({
+        status: false,
+        message: "Invalid credentials"
+      });
+    } else {
+      return res.status(200).json({
+        status: true,
+        message: "User Login Successful",
+        data: {
+          token: token
+        }
+      });
+    }
   } catch (err) {
     console.error(err.message);
     return res.status(500).json({ status: false, message: err.message });

@@ -15,18 +15,15 @@ const login = async (userDetails, res) => {
     where: { email: userDetails.email }
   });
   if (!user) {
-    return res.status(401).json({
-      status: false,
-      message: "Invalid credentials"
-    });
+    return false;
   }
 
-  const isValidPassword = bcrypt.compare(userDetails.password, user.password);
+  const isValidPassword = await bcrypt.compare(
+    userDetails.password,
+    user.password
+  );
   if (!isValidPassword) {
-    return res.status(401).json({
-      status: false,
-      message: "Invalid credentials"
-    });
+    return false;
   }
 
   const accessToken = jwt.sign(
