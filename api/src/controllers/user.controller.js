@@ -1,9 +1,7 @@
 // import { create, findByPk, update, destroy } from './user';
-const userService = require('../services/user.service')
+const userService = require("../services/user.service");
 
-
-
-const getAllUsers = async(req, res)=> {
+const getAllUsers = async (req, res) => {
   try {
     const users = await userService.getAllUsers();
     return res.status(200).json({
@@ -15,16 +13,15 @@ const getAllUsers = async(req, res)=> {
     console.error(err.message);
     return res.status(500).json({ status: false, message: err.message });
   }
-}
+};
 
 const updateUser = async (req, res) => {
   try {
     const user = await userService.updateUser(req.params.id, req.body);
-    // console.log(user)
     res.status(200).json({
       status: true,
       message: "User Updated Successfully",
-      data: user,
+      data: user
     });
   } catch (error) {
     if (!error.code == 11000) {
@@ -34,12 +31,10 @@ const updateUser = async (req, res) => {
     res.status(409).json({
       status: false,
       message: "An error occurred Because of Duplicate Creation",
-      error: error.message,
+      error: error.message
     });
   }
 };
-
-
 
 // export async function createUser(req, res) {
 //   try {
@@ -95,4 +90,4 @@ const updateUser = async (req, res) => {
 //   }
 // }
 
-module.exports = {getAllUsers , updateUser}
+module.exports = { getAllUsers, updateUser };

@@ -47,21 +47,19 @@ const getAllUsers = async () => {
 };
 
 const updateUser = async (id, userDetails) => {
-  console.log(userDetails , id)
+  console.log(userDetails, id);
   if (userDetails.password !== undefined) {
     const salt = await bcrypt.genSalt(10);
     userDetails.password = await bcrypt.hash(userDetails.password, salt);
   }
   const user = await userDetailsModel.findOne({
     where: { _id: id }
-  });  
-  console.log("id",user._id)
+  });
   if (user) {
     await userDetailsModel.update(userDetails, { where: { _id: user._id } });
     const updatedUser = await userDetailsModel.findOne({
-      where: { _id: user._id },
+      where: { _id: user._id }
     });
-    console.log("updatedUser", updatedUser);
     return updatedUser;
   }
 };

@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 const Item = ({ children }) => {
   return (
@@ -48,7 +48,7 @@ const Login = () => {
 
       const savedUser = user.data;
       console.log(savedUser);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
       console.error("Registration failed:", error);
     }
