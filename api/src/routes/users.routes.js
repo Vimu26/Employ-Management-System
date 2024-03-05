@@ -7,8 +7,8 @@ router.get(
   "/", usersController.getAllUsers
 );
 
-// router.post(
-//   "/register",authController.signup,
-// );
+router.patch(
+  "/:id",usersController.updateUser,
+);
 
 module.exports = router;

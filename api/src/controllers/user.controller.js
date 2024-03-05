@@ -17,7 +17,27 @@ const getAllUsers = async(req, res)=> {
   }
 }
 
-
+const updateUser = async (req, res) => {
+  try {
+    const user = await userService.updateUser(req.params.id, req.body);
+    // console.log(user)
+    res.status(200).json({
+      status: true,
+      message: "User Updated Successfully",
+      data: user,
+    });
+  } catch (error) {
+    if (!error.code == 11000) {
+      console.error("An error occurred", error.message);
+      return res.status(500).json({ status: false, message: error.message });
+    }
+    res.status(409).json({
+      status: false,
+      message: "An error occurred Because of Duplicate Creation",
+      error: error.message,
+    });
+  }
+};
 
 
 
@@ -75,4 +95,4 @@ const getAllUsers = async(req, res)=> {
 //   }
 // }
 
-module.exports = {getAllUsers}
+module.exports = {getAllUsers , updateUser}

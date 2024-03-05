@@ -10,7 +10,7 @@ const signup = async (userDetails) => {
   });
 };
 
-const login = async (userDetails , res) => {
+const login = async (userDetails, res) => {
   const user = await userDetailsModel.findOne({
     where: { email: userDetails.email }
   });
@@ -42,12 +42,33 @@ const login = async (userDetails , res) => {
   return accessToken;
 };
 
-const getAllUsers = async() =>{
-   return  await userDetailsModel.findAll();
-}
+const getAllUsers = async () => {
+  return await userDetailsModel.findAll();
+};
+
+const updateUser = async (id, userDetails) => {
+  console.log(userDetails , id)
+  if (userDetails.password !== undefined) {
+    const salt = await bcrypt.genSalt(10);
+    userDetails.password = await bcrypt.hash(userDetails.password, salt);
+  }
+  const user = await userDetailsModel.findOne({
+    where: { _id: id }
+  });  
+  console.log("id",user._id)
+  if (user) {
+    await userDetailsModel.update(userDetails, { where: { _id: user._id } });
+    const updatedUser = await userDetailsModel.findOne({
+      where: { _id: user._id },
+    });
+    console.log("updatedUser", updatedUser);
+    return updatedUser;
+  }
+};
 
 module.exports = {
   signup,
   login,
-  getAllUsers
+  getAllUsers,
+  updateUser
 };
