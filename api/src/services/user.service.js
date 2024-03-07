@@ -59,9 +59,20 @@ const updateUser = async (id, userDetails) => {
   return await user.save();
 };
 
+const deleteUser = async (id) => {
+  const user = await userDetailsModel.findByPk(id);
+
+  if (!user) {
+    throw new Error(`User with id ${id} not found`);
+  }
+
+  return await user.destroy();
+};
+
 module.exports = {
   signup,
   login,
   getAllUsers,
-  updateUser
+  updateUser,
+  deleteUser
 };

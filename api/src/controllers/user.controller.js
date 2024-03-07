@@ -36,6 +36,20 @@ const updateUser = async (req, res) => {
   }
 };
 
+const DeleteUser = async (req, res) => {
+  try {
+    const users = await userService.deleteUser(req.params.id);
+    return res.status(200).json({
+      status: true,
+      message: "User Deleted Successful",
+      data: users
+    });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({ status: false, message: err.message });
+  }
+};
+
 // export async function createUser(req, res) {
 //   try {
 //     const { name, email, password } = req.body;
@@ -90,4 +104,4 @@ const updateUser = async (req, res) => {
 //   }
 // }
 
-module.exports = { getAllUsers, updateUser };
+module.exports = { getAllUsers, updateUser ,DeleteUser };
