@@ -30,7 +30,7 @@ const updateUser = async (req, res) => {
     }
     res.status(409).json({
       status: false,
-      message: "An error occurred Because of Duplicate Creation",
+      message: "An error occurred ",
       error: error.message
     });
   }

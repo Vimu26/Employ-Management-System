@@ -44,21 +44,19 @@ const getAllUsers = async () => {
 };
 
 const updateUser = async (id, userDetails) => {
-  console.log(userDetails, id);
-  if (userDetails.password !== undefined) {
+  const user = await userDetailsModel.findByPk(id);
+
+  if (!user) {
+    throw new Error(`User with id ${id} not found`);
+  }
+
+  if (userDetails.password) {
     const salt = await bcrypt.genSalt(10);
     userDetails.password = await bcrypt.hash(userDetails.password, salt);
   }
-  const user = await userDetailsModel.findOne({
-    where: { _id: id }
-  });
-  if (user) {
-    await userDetailsModel.update(userDetails, { where: { _id: user._id } });
-    const updatedUser = await userDetailsModel.findOne({
-      where: { _id: user._id }
-    });
-    return updatedUser;
-  }
+
+  Object.assign(user, userDetails);
+  return await user.save();
 };
 
 module.exports = {

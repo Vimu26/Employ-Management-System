@@ -1,14 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const { Sequelize } = require('sequelize');
-const authRouter =require("./routes/auth.routes")
-const usersRouter = require('./routes/users.routes')
+const { Sequelize } = require("sequelize");
+const authRouter = require("./routes/auth.routes");
+const usersRouter = require("./routes/users.routes");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
 
 dotenv.config();
 
@@ -22,15 +21,18 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    dialect: "mysql",
+    dialect: "mysql"
   }
 );
 
-sequelize.authenticate().then(() => {
-  console.log("MySql database Connected Successfully.");
-}).catch((error) => {
-  console.error("Unable to connect to the database:", error);
-});
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("MySql database Connected Successfully.");
+  })
+  .catch((error) => {
+    console.error("Unable to connect to the database:", error);
+  });
 
 const PORT = process.env.PORT || 3172;
 
