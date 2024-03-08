@@ -14,10 +14,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const isInitialMount = useRef(true);
+  const navigate = useNavigate()
+
+
   const getUsers = async () => {
     try {
       const response = await axios.get("http://localhost:3172/users");
@@ -30,6 +34,16 @@ const Dashboard = () => {
 
   function handleDelete() {
     // code to run when the first button in the first button group is clicked
+  }
+
+  const handleCreateUser=async() => {
+    navigate("/add-edit-user")
+  //  try {
+  //     const response = await axios.post("http://localhost:3172/auth/register", );
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error("users Getting failed:", error);
+  //   }
   }
 
   function handleEdit() {
@@ -54,7 +68,7 @@ const Dashboard = () => {
         mt: 5
       }}
     >
-      <Button variant="contained" startIcon={<AddIcon />}>
+      <Button variant="contained" startIcon={<AddIcon />} onClick={handleCreateUser}>
         Add
       </Button>
       <Box
