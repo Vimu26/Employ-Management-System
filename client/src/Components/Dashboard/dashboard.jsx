@@ -19,8 +19,7 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const isInitialMount = useRef(true);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const getUsers = async () => {
     try {
@@ -36,15 +35,9 @@ const Dashboard = () => {
     // code to run when the first button in the first button group is clicked
   }
 
-  const handleCreateUser=async() => {
-    navigate("/add-edit-user")
-  //  try {
-  //     const response = await axios.post("http://localhost:3172/auth/register", );
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error("users Getting failed:", error);
-  //   }
-  }
+  const handleCreateUser = async () => {
+    navigate("/add-edit-user");
+  };
 
   function handleEdit() {
     // code to run when the second button in the first button group is clicked
@@ -68,7 +61,11 @@ const Dashboard = () => {
         mt: 5
       }}
     >
-      <Button variant="contained" startIcon={<AddIcon />} onClick={handleCreateUser}>
+      <Button
+        variant="contained"
+        startIcon={<AddIcon />}
+        onClick={handleCreateUser}
+      >
         Add
       </Button>
       <Box

@@ -132,18 +132,6 @@ const AddUser = () => {
                 </Grid>
               </Grid>
             </form>
-            {/* <Typography
-                    variant="caption"
-                    gutterBottom
-                    textAlign={"left"}
-                    onClick={() => {
-                      onLogin();
-                    }}
-                    sx={{ textDecoration: "underline", cursor: "pointer" }}
-                  >
-                    {" "}
-                    Already Have An Account? Login Here!{" "}
-                  </Typography> */}
           </Box>
         </Container>
       </Box>
