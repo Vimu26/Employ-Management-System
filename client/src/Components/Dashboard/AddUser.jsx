@@ -9,20 +9,6 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Item = ({ children }) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "80vh"
-      }}
-    >
-      {children}
-    </Box>
-  );
-};
 
 const AddUser = () => {
   const [name, setName] = React.useState("");
