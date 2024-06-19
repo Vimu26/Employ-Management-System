@@ -6,7 +6,8 @@ const signup = async (userDetails) => {
   return await userDetailsModel.create({
     name: userDetails.name,
     email: userDetails.email,
-    password: userDetails.password
+    password: userDetails.password,
+    contact : userDetails.contact
   });
 };
 

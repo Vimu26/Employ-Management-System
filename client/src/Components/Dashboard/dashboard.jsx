@@ -25,15 +25,19 @@ const Dashboard = () => {
     try {
       const response = await axios.get("http://localhost:3172/users");
       setUsers(response.data.data);
-      console.log(users);
     } catch (error) {
       console.error("users Getting failed:", error);
     }
   };
 
-  function handleDelete() {
-    // code to run when the first button in the first button group is clicked
-  }
+  const handleDelete = async (user) => {
+    try {
+      await axios.delete(`http://localhost:3172/users/${user._id}`);
+      setUsers(users.filter((u) => u._id !== user._id));
+    } catch (error) {
+      console.error("Failed to delete user:", error);
+    }
+  };
 
   const handleCreateUser = async () => {
     navigate("/add-edit-user");
@@ -54,8 +58,8 @@ const Dashboard = () => {
 
   return (
     <Container
+      maxWidth="xl"
       sx={{
-        maxWidth: 1000,
         alignItems: "center",
         textAlign: "center",
         mt: 5
@@ -72,7 +76,8 @@ const Dashboard = () => {
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
+          width: "100%"
         }}
       >
         <TableContainer component={Paper}>
@@ -97,7 +102,7 @@ const Dashboard = () => {
                   </TableCell>
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.email}</TableCell>
-                  <TableCell>{row.password}</TableCell>
+                  <TableCell>{row.contact}</TableCell>
                   <TableCell>
                     <Stack direction="row" spacing={2}>
                       <Button
