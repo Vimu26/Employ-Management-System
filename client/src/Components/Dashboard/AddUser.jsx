@@ -14,6 +14,7 @@ const AddUser = () => {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [contact, setContact] = React.useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -24,6 +25,7 @@ const AddUser = () => {
         {
           name,
           email,
+          contact,
           password
         },
         {
@@ -91,6 +93,19 @@ const AddUser = () => {
                     />
                   </FormControl>
                 </Grid>
+                <Grid item xs={12}>
+                        <FormControl fullWidth>
+                          <TextField
+                            id="contact"
+                            label="Contact Number"
+                            variant="outlined"
+                            value={contact}
+                            onChange={(e) => setContact(e.target.value)}
+                            required
+                            fullWidth
+                          />
+                        </FormControl>
+                      </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
                     <TextField

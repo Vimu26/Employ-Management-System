@@ -25,7 +25,11 @@ const User = sequelize.define(
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    contact: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     timestamps: false

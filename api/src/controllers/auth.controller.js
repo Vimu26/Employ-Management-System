@@ -7,12 +7,14 @@ dotenv.config();
 
 const signup = async (req, res) => {
   try {
+    console.log(req.body)
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
     const user = await userService.signup({
       email: req.body.email,
       password: hashPassword,
+      contact : req.body.contact,
       name: req.body.name
     });
     if (user) {
